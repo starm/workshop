@@ -1,11 +1,11 @@
 var express = require('express'),
 app=express(),
-staticDir = (process.env.NODE_ENV || "development") === "production" ? "dist" : "";
+staticDir = (process.env.NODE_ENV || "development") === "production" ? "dist" : "public";
 
 app.use(express.static(__dirname + '/' + staticDir));
 
 app.get('*', function (req, res) {
-res.sendFile(__dirname + '/' + staticDir + 'index.html');
+res.redirect('/index.html');
 });
 
 var server = app.listen(process.env.PORT || 8088, function() {
